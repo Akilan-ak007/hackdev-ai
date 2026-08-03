@@ -10,7 +10,12 @@ export default function App() {
   
   // Tunnel and Connection State
   const [tunnelUrl, setTunnelUrl] = useState(() => {
-    return localStorage.getItem('hackdev_tunnel_url') || '';
+    const saved = localStorage.getItem('hackdev_tunnel_url');
+    // Default to the permanent ngrok tunnel, clearing any expired dead tunnels
+    if (!saved || saved.includes('.lhr.life') || saved.includes('.pinggy-free.link') || saved.includes('serveo.net')) {
+      return 'https://liquid-superjet-unbitten.ngrok-free.dev';
+    }
+    return saved;
   });
   const [models, setModels] = useState([]);
   const [connectionStatus, setConnectionStatus] = useState(() => {
