@@ -23,7 +23,11 @@ export default function TunnelHelper({ tunnelUrl, setTunnelUrl, onConnectionSucc
       // Direct request to the tunnel URL
       const response = await fetch(`${formattedUrl}/api/tags`, {
         method: 'GET',
-        headers: { 'Accept': 'application/json' }
+        headers: { 
+          'Accept': 'application/json',
+          'ngrok-skip-browser-warning': 'true',
+          'bypass-tunnel-reminder': 'true'
+        }
       });
       
       if (!response.ok) {

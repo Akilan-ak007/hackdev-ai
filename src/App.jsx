@@ -131,7 +131,12 @@ export default function App() {
       const baseUrl = isWsConnected ? 'http://localhost:5001' : tunnelUrl;
       if (!baseUrl) return;
       try {
-        const response = await fetch(`${baseUrl}/api/tags`);
+        const response = await fetch(`${baseUrl}/api/tags`, {
+          headers: {
+            'ngrok-skip-browser-warning': 'true',
+            'bypass-tunnel-reminder': 'true'
+          }
+        });
         if (response.ok) {
           const data = await response.json();
           if (data && data.models) {

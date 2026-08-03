@@ -106,7 +106,11 @@ export default function Playground({ tunnelUrl, models, isWsConnected, onNewLoca
 
       const response = await fetch(endpoint, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 
+          'Content-Type': 'application/json',
+          'ngrok-skip-browser-warning': 'true',
+          'bypass-tunnel-reminder': 'true'
+        },
         body: JSON.stringify(requestBody),
       });
 
